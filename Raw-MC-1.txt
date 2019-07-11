@@ -1,0 +1,194 @@
+State-1:
+
+P = [0 0 0 0.4 0.3 0 0 0.3;
+0.5 0.3 0 0.2 0 0 0 0;
+0 0.2 0.3 0.2 0 0.3 0 0;
+0 0 0.5 0 0.4 0.1 0 0;
+0 0.2 0.3 0.2 0 0.3 0 0;
+0.2 0.3 0 0 0.3 0 0 0.2;
+0.3 0 0 0.4 0.3 0 0 0;
+0.1 0.2 0.5 0 0 0.2 0 0];
+mc = dtmc(P);
+figure;
+graphplot(mc,'ColorNodes',true);
+figure;
+distplot(lc,X1,'Type','histogram','FrameRate',1)
+
+State-2:
+
+P = [0.3 0.7 0 0 0 0 0 0;
+0.5 0.5 0 0 0 0 0 0;
+0 0.2 0.5 0.2 0 0.1 0 0;
+0 0 0.8 0 0.2 0 0 0;
+0 0.6 0.3 0 0 0 0.1 0;
+0 0.9 0.1 0 0 0 0 0;
+0 0 0 0.4 0.6 0 0 0;
+0 0.2 0.5 0 0 0.2 0 0.1];
+mc = dtmc(P);
+
+figure;
+distplot(lc,X1,'Type','histogram','FrameRate',1)
+xlim({'1','8'})
+ylim([0.038 0.466])
+figure;
+graphplot(mc,'ColorNodes',true);
+xlim([-2.22 2.93])
+ylim([-1.77 1.94])
+
+
+State-3:
+
+P = [ 0.9 0 0 0 0 0 0 0.1;
+0.5 0.3 0 0 0 0 0.2 0;
+0 0 0.3 0.2 0 0.3 0.2 0;
+0 0 0 0 0.4 0.4 0 0.2;
+0 0.2 0.7 0 0 0 0.1 0;
+0 0.3 0.5 0 0 0 0 0.2;
+0.5 0 0 0.4 0.1 0 0 0;
+0 0.2 0.6 0 0 0.2 0 0 ];
+mc = dtmc(P);
+figure;
+distplot(lc,X1,'Type','histogram','FrameRate',1)
+xlim({'1','8'})
+ylim([0.030 0.316])
+
+State-4:
+
+P = [ 0 0 0.3 0 0.3 0 0.4 0;
+0 0.3 0 0.2 0 0.5 0 0;
+0 0.2 0 0.2 0 0.3 0 0.3;
+0.5 0 0 0.1 0.4 0 0 0;
+0 0.2 0 0 0.5 0 0.3 0;
+0 0 0.2 0 0.3 0 0.3 0.2;
+0.3 0 0 0.4 0.3 0 0 0;
+0 0 0 0 0 0.2 0.5 0.3 ];
+mc = dtmc(P);
+figure;
+graphplot(mc,'ColorNodes',true);
+figure;
+distplot(lc,X1,'Type','histogram','FrameRate',1)
+xlim({'1','8'})
+ylim([0.030 0.316])
+
+
+State-5:
+
+P = [ 0 0 0 0.1 0.3 0.6 0 0;
+0 0.3 0.5 0.2 0 0 0 0;
+0.7 0 0 0 0.3 0 0 0;
+0 0 0.9 0.1 0 0 0 0;
+0 0.2 0.5 0 0 0 0.3 0;
+0.3 0 0 0 0.3 0 0.1 0.2;
+0.3 0 0 0.7 0 0 0 0;
+0 0 0.6 0 0.4 0 0 0];
+mc = dtmc(P);
+figure;
+graphplot(mc,'ColorNodes',true);
+
+figure;
+distplot(lc,X1,'Type','histogram','FrameRate',1)
+xlim({'1','8'})
+ylim([0.030 0.316])
+
+Graph:
+
+rng(150); % For reproducibility
+T = 16;
+sigma1 = 0.78;
+sigma2 = 0.41;
+phi = 0.94;
+u1 = randn(T,1)*sigma1;
+x1 = cumsum(u1);
+Mdl2 = arima('AR',phi,'Variance',sigma2^2,'Constant',0);
+x2 = simulate(Mdl2,T,'Y0',0);
+y = x1 ./ x2;
+figure;
+plot([x1 x2 y])
+legend('busy state11','variance','utilization','Location','Best');
+ylabel('Probable packet utilization');
+xlabel('Busy system states on transition');
+rng(150); % For reproducibility
+T = 16;
+sigma1 = 0.93;
+sigma2 = 0.52;
+phi = 0.98;
+u1 = randn(T,1)*sigma1;
+x1 = cumsum(u1);
+Mdl2 = arima('AR',phi,'Variance',sigma2^2,'Constant',0);
+x2 = simulate(Mdl2,T,'Y0',0);
+y = x1 ./ x2;
+figure;
+plot([x1 x2 y])
+legend('busy state16','variance','utilization','Location','Best');
+ylabel('Probable packet utilization');
+xlabel('Busy system states on transition');
+rng(100); % For reproducibility
+T = 16;
+sigma1 = 0.12;
+sigma2 = 0.07;
+phi = 0.32;
+u1 = randn(T,1)*sigma1;
+x1 = cumsum(u1);
+Mdl2 = arima('AR',phi,'Variance',sigma2^2,'Constant',0);
+x2 = simulate(Mdl2,T,'Y0',0);
+y = x1 + x2;
+figure;
+plot([x1 x2 y])
+legend('busy state1','variance','utilization','Location','Best');
+ylabel('Probable utilization');
+xlabel('Busy system states on transition');
+
+----
+
+rng(100); % For reproducibility
+T = 16;
+sigma1 = 0.25;
+sigma2 = 0.08;
+phi = 0.92;
+u1 = randn(T,1)*sigma1;
+x1 = cumsum(u1);
+Mdl2 = arima('AR',phi,'Variance',sigma2^2,'Constant',0);
+x2 = simulate(Mdl2,T,'Y0',0);
+y = x1 + x2;
+figure;
+plot([x1 x2 y])
+legend('Delay','Packet loss','Packet process','Location','Best');
+ylabel('Probable Packet process in state 3');
+xlabel('Probable delay in state 3');
+rng(100); % For reproducibility
+T = 16;
+sigma1 = 0.81;
+sigma2 = 0.49;
+phi = 0.91;
+u1 = randn(T,1)*sigma1;
+x1 = cumsum(u1);
+Mdl2 = arima('AR',phi,'Variance',sigma2^2,'Constant',0);
+x2 = simulate(Mdl2,T,'Y0',0);
+y = x1 + x2;
+figure;
+plot([x1 x2 y])
+legend('Delay','Packet loss','Packet process','Location','Best');
+ylabel('Probable packet process in state 9');
+xlabel('Probable delay in state 9');
+
+
+----
+
+rng(100); % For reproducibility
+T = 16;
+sigma1 = 0.93;
+sigma2 = 0.61;
+phi = 0.98;
+u1 = randn(T,1)*sigma1;
+x1 = cumsum(u1);
+Mdl2 = arima('AR',phi,'Variance',sigma2^2,'Constant',0);
+x2 = simulate(Mdl2,T,'Y0',0);
+y = x1 + x2;
+figure;
+plot([x1 x2 y])
+legend('Delay','Packet loss','Packet process','Location','Best');
+ylabel('Probable packet process in state 15');
+xlabel('Probable delay in state 15');
+
+
+

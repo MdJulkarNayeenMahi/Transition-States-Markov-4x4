@@ -1,0 +1,6 @@
+
+1. https://www.mathworks.com/examples/econometrics/category/markov-models
+
+2. https://www.mathworks.com/examples/econometrics/mw/econ-ex25058474-estimate-random-parameter-of-state-space-model?fbclid=IwAR3eFe-6XMOrNbft_wXMYoaIqbHyxFREcKrtQKBzYilyXLJ6R5VtsYoElZg
+
+3. https://www.mathworks.com/examples/matlab/mw/mobilesensor_product-mobilesensor_plottingmultiplesensors-acquire-and-plot-angular-velocity-and-orientation-data-from-your-android-8482-device
